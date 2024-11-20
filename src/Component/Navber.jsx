@@ -78,111 +78,109 @@ const Navber = ({ className }) => {
     <div className={`py-4 z-50 bg-[#ffffff98] backdrop-blur-[2px] left-0 w-full ${className}`}>
       <Container className={"flex items-center justify-between"}>
 
-        <Link to={'/'}>
+        <Link to={'/'} className='w-[18%]'>
           <img src={logo6} alt="" className='w-[100px] h-[80px]' />
         </Link>
 
-        <div className="flex items-center">
 
-          <ul className='flex gap-[8px] mr-[200px]'>
-            {
-              list.map((el, idx) => {
-                return (
-                  <List to={el.path} key={idx} text={el.name} />
-                )
-              })
-            }
-          </ul>
+        <ul className='flex gap-[8px] w-[45%]'>
+          {
+            list.map((el, idx) => {
+              return (
+                <List to={el.path} key={idx} text={el.name} />
+              )
+            })
+          }
+        </ul>
 
 
-          <div className="flex gap-8 items-center">
-            <button className='relative'>
-              <IoIosNotifications className='text-2xl' />
-              <p className='absolute -top-[14px] -right-3 w-[1.3vw] h-[1.3vw] text-[14px] flex items-center justify-center text-white font-semibold bg-btn rounded-[100%]'>
-                0
+
+        <div className="w-[31%] flex justify-end items-center gap-8">
+          <button className='relative'>
+            <IoIosNotifications className='text-2xl' />
+            <p className='absolute -top-[14px] -right-3 w-[1.3vw] h-[1.3vw] text-[14px] flex items-center justify-center text-white font-semibold bg-btn rounded-[100%]'>
+              0
+            </p>
+          </button>
+
+          <Link to={'/wishlist'} className='relative'>
+            <button className='mt-1'>
+              <CiHeart className='text-[26px]' />
+              <p className='absolute -top-2 -right-4 w-[1.3vw] h-[1.3vw] text-[14px] flex items-center justify-center text-white font-semibold bg-btn rounded-[100%]'>
+                {totalFv}
               </p>
             </button>
-
-            <Link to={'/wishlist'} className='relative'>
-              <button className='mt-1'>
-                <CiHeart className='text-[26px]' />
-                <p className='absolute -top-2 -right-4 w-[1.3vw] h-[1.3vw] text-[14px] flex items-center justify-center text-white font-semibold bg-btn rounded-[100%]'>
-                  {totalFv}
-                </p>
-              </button>
-            </Link>
+          </Link>
 
 
-            <button onClick={() => cartBtn()} className='relative'>
-              <FaCartPlus className='text-[22px] text-blck' />
+          <button onClick={() => cartBtn()} className='relative'>
+            <FaCartPlus className='text-[22px] text-blck' />
 
-              <p className='absolute -top-4 -right-4 w-[1.3vw] h-[1.3vw] text-[14px] flex items-center justify-center text-white font-semibold bg-btn rounded-[100%]'>
-                {totalQuantity}
-              </p>
-            </button>
+            <p className='absolute -top-4 -right-4 w-[1.3vw] h-[1.3vw] text-[14px] flex items-center justify-center text-white font-semibold bg-btn rounded-[100%]'>
+              {totalQuantity}
+            </p>
+          </button>
+        </div>
 
-
-            <div className="relative">
-              <div
-                onClick={HandleUserOpen}
-                className="text-[30px] text-black cursor-pointer"
-              >
-                <FaUserCircle />
+        <div className="relative w-[6%]">
+          <div
+            onClick={HandleUserOpen}
+            className="text-[30px] flex justify-end text-black cursor-pointer"
+          >
+            <FaUserCircle />
+          </div>
+          {/* drop down */}
+          {dropdown && (
+            <div className="absolute bottom-[-218px] right-0 w-[320px] mx-auto border-2 rounded-lg bg-white py-6 mb-10">
+              <div className="text-center pb-2">
+                <h3 className="font-montserrat font-bold text-lg">
+                  Accounts
+                </h3>
               </div>
-              {/* drop down */}
-              {dropdown && (
-                <div className="absolute bottom-[-218px] right-0 w-[320px] mx-auto border-2 rounded-lg bg-white py-6 mb-10">
-                  <div className="text-center pb-2">
-                    <h3 className="font-montserrat font-bold text-lg">
-                      Accounts
-                    </h3>
+              {sign ? (
+                <div className="flex gap-x-2 justify-center pb-2">
+                  <div className="">
+                    <button
+                      onClick={HandleLogout}
+                      className="font-montserrat font-semibold text-md text-white bg-btn border rounded-full py-2 px-8"
+                    >
+                      Log out
+                    </button>
                   </div>
-                  {sign ? (
-                    <div className="flex gap-x-2 justify-center pb-2">
-                      <div className="">
-                        <button
-                          onClick={HandleLogout}
-                          className="font-montserrat font-semibold text-md text-white bg-btn border rounded-full py-2 px-8"
-                        >
-                          Log out
-                        </button>
-                      </div>
-                      <div className="">
-                        <Link to={"/details"}>
-                          {" "}
-                          <button
-                            onClick={() => setdropdown(false)}
-                            className="font-montserrat font-semibold text-md text-white bg-btn border rounded-full py-2 px-6"
-                          >
-                            Details
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="flex gap-x-2 justify-center pb-2">
-                      <div className="">
-                        <Link onClick={() => setdropdown(false)} to={"/login"}>
-                          <button className="font-montserrat font-semibold text-md text-white bg-btn border rounded-full py-2 px-8">
-                            Login
-                          </button>
-                        </Link>
-                      </div>
-                      <div className="">
-                        <Link onClick={() => setdropdown(false)} to={"/signup"}>
-                          <button className="font-montserrat font-semibold text-md text-white bg-btn border rounded-full py-2 px-6">
-                            Sign Up
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  )}
+                  <div className="">
+                    <Link to={"/details"}>
+                      {" "}
+                      <button
+                        onClick={() => setdropdown(false)}
+                        className="font-montserrat font-semibold text-md text-white bg-btn border rounded-full py-2 px-6"
+                      >
+                        Details
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex gap-x-2 justify-center pb-2">
+                  <div className="">
+                    <Link onClick={() => setdropdown(false)} to={"/login"}>
+                      <button className="font-montserrat font-semibold text-md text-white bg-btn border rounded-full py-2 px-8">
+                        Login
+                      </button>
+                    </Link>
+                  </div>
+                  <div className="">
+                    <Link onClick={() => setdropdown(false)} to={"/signup"}>
+                      <button className="font-montserrat font-semibold text-md text-white bg-btn border rounded-full py-2 px-6">
+                        Sign Up
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
-          </div>
-
+          )}
         </div>
+
       </Container>
     </div>
   )

@@ -35,7 +35,7 @@ const Video = () => {
       })
       : gsap.to("#video", {
         opacity: 1,
-        zIndex: 100000,
+        zIndex: 999,
       }) &&
       gsap.to("#video2", {
         opacity: 0,
@@ -89,7 +89,7 @@ const Video = () => {
         id="video2"
         className="z-[-999] fixed rounded-lg overflow-hidden w-[80%] !h-[80vh] opacity-0 top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]"
       >
-        <video muted ref={videoref} className="h-full w-full object-cover">
+        <video ref={videoref} className="h-full w-full object-cover">
           <source src={AboutVideo} />
         </video>
       </div>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import Context from "../Context/Context";
 import { IoClose } from "react-icons/io5";
+import { useEffect } from "react";
 
 
 function AddToCartPopUp({ className }) {
@@ -9,9 +10,36 @@ function AddToCartPopUp({ className }) {
 
     let [quantity, setquantity] = useState(1)
     let [Variation, setVariation] = useState("Small")
+    let [Smallprice, setSmallprice] = useState(0)
+    let [price, setprice] = useState(0)
+
+    useEffect(() => {
+        popUpCart.forEach(elm => {
+            setprice(elm.price)
+            setSmallprice(elm.price)
+        });
+    }, [popUpCart])
+
+
+
+
+    const sizeChange = ((e) => {
+        setVariation(e.target.value)
+
+        if (e.target.value == "Small") {
+            setprice(Smallprice)
+        }
+        if (e.target.value == "Medium") {
+            setprice(Smallprice * 1.4)
+        }
+        if (e.target.value == "Large") {
+            setprice(Smallprice * 1.5)
+        }
+    })
+
 
     const addToAllFunc = (id) => {
-        addToCart(id, quantity, Variation)
+        addToCart(id, quantity, Variation, price)
         setquantity(1)
         add_remove_ToToast("Your order has been added to the cart")
     }
@@ -49,7 +77,7 @@ function AddToCartPopUp({ className }) {
                                 <select
                                     id="variation"
                                     value={Variation}
-                                    onChange={(e) => setVariation(e.target.value)}
+                                    onChange={sizeChange}
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-btn"
                                 >
                                     <option >
@@ -82,7 +110,7 @@ function AddToCartPopUp({ className }) {
                                         +
                                     </button>
                                 </div>
-                                <p className="text-lg font-semibold">${(quantity * el.price).toFixed(2)}</p>
+                                <p className="text-lg font-semibold">${(quantity * price).toFixed(2)}</p>
                             </div>
 
                             {/* Add to Cart Button */}

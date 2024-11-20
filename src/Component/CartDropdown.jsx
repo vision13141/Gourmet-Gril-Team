@@ -12,8 +12,8 @@ const CartDropdown = ({ className, item }) => {
 
 
 
-    const handleCheck = (id, quantity, Variation) => {
-        handleCheckout(id, quantity, Variation)
+    const handleCheck = (id, quantity, Variation, price) => {
+        handleCheckout(id, quantity, Variation, price)
     }
 
     const remove = (id) => {
@@ -45,7 +45,7 @@ const CartDropdown = ({ className, item }) => {
 
                             <div className="flex items-center gap-3">
                                 <Link to={`/order_food/${id}`}>
-                                    <button onClick={() => handleCheck(id, quantity, Variation)} className="w-[90px] !bg-btn text-white p-1 font-semibold rounded-full">
+                                    <button onClick={() => handleCheck(id, quantity, Variation, price)} className="w-[90px] !bg-btn text-white p-1 font-semibold rounded-full">
                                         Checkout
                                     </button>
                                 </Link>

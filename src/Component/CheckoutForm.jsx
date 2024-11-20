@@ -68,7 +68,7 @@ const CheckoutForm = ({ parent }) => {
                                         {/* <p className=''>{checkOut.Variation}</p> */}
                                         <p className=''>{checkOut.Variation}</p>
                                     </td>
-                                    <td className="py-2 px-3 text-center">${checkOut.price}</td>
+                                    <td className="py-2 px-3 text-center">${(checkOut.price).toFixed(2)}</td>
                                 </tr>
 
                             </tbody>
